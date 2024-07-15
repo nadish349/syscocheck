@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Selection</title>
+    <style>
+        body {
+            background-image: url('rectangle@2x.png');
+            background-size: cover; /* Ensures the background image covers the entire page */
+            background-position: center; /* Centers the background image */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            margin: 0;
+            height: 100vh; /* Makes sure the body takes up the full viewport height */
+            display: flex;
+            justify-content: center; /* Centers content horizontally */
+            align-items: center; /* Centers content vertically */
+        }
+        .container {
+            text-align: center;
+        }
+        .button {
+            background-color: #4CAF50; /* Green background */
+            border: none; /* Removes borders */
+            color: white; /* White text */
+            padding: 15px 32px; /* Padding inside the button */
+            text-align: center; /* Centers text */
+            text-decoration: none; /* Removes underline */
+            display: inline-block; /* Allows setting width and height */
+            font-size: 16px; /* Text size */
+            margin: 10px; /* Spacing between buttons */
+            cursor: pointer; /* Shows a pointer cursor on hover */
+            border-radius: 5px; /* Rounds the corners of the button */
+            transition: background-color 0.3s; /* Smooth transition for background color */
+        }
+        .button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="button" onclick="automaticSelection()">Automatic Selection</button>
+        <button class="button" onclick="manualSelection()">Manual Selection</button>
+    </div>
+
+    <script>
+        function automaticSelection() {
+            // Redirects to 'auto.html'
+            window.location.href = 'auto.html';
+        }
+
+        function manualSelection() {
+            // Redirects to 'manual.html'
+            window.location.href = 'manual.html';
+        }
+    </script>
+</body>
+</html>

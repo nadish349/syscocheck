@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('rectangle1.png'); /* Replace with your background image URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat; /* Ensure the image doesn't repeat */
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Make the body take up the full height of the viewport */
+            display: flex;
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+        }
+
+        .login-container {
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent background for the login box */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="text"], input[type="password"] {
+            background: rgba(255, 255, 255, 0.9); /* Light background for inputs */
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .account-buttons {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <input type="text" id="username" name="username" placeholder="Enter Username" required>
+            <input type="password" id="password" name="password" placeholder="Enter Password" required>
+            <button type="button" onclick="login()">Login</button>
+        </form>
+        <div class="account-buttons">
+            <button onclick="showCreateAccount()">Create Account</button>
+        </div>
+        <div id="createAccountSection" style="display: none; margin-top: 20px;">
+            <h2>Create Account</h2>
+            <form id="createAccountForm">
+                <input type="text" id="newUsername" placeholder="New Username" required>
+                <input type="password" id="newPassword" placeholder="New Password" required>
+                <button type="button" onclick="createAccount()">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Predefined credentials
+        const credentials = {
+            username: 'admin', // Initial username
+            password: 'password123' // Initial password
+        };
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === credentials.username && password === credentials.password) {
+                window.location.href = 'selection.html'; // Redirect to the selection page upon successful login
+            } else {
+                alert('Invalid username or password'); // Display an error message
+            }
+        }
+
+        function showCreateAccount() {
+            document.getElementById('createAccountSection').style.display = 'block';
+        }
+
+        function createAccount() {
+            const newUsername = document.getElementById('newUsername').value;
+            const newPassword = document.getElementById('newPassword').value;
+
+            if (newUsername && newPassword) {
+                // Save new credentials
+                credentials.username = newUsername;
+                credentials.password = newPassword;
+
+                // Hide the create account form
+                document.getElementById('createAccountSection').style.display = 'none';
+
+                // Optionally, clear the login form
+                document.getElementById('loginForm').reset();
+
+                alert('Account created successfully!'); // Display a success message
+            } else {
+                alert('Please fill out both fields.'); // Display an error message
+            }
+        }
+    </script>
+</body>
+</html>

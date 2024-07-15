@@ -1,0 +1,77 @@
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Circular Progress Bar | Coders kamrul</title>
+  <link rel="stylesheet" href="process.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js"></script>
+</head>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js"></script>
+</head>
+
+<body>
+<div class="wrapper">
+  <div class="card">
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span></span></div>
+    </div>
+    <div class="text">checking-os</div>
+  </div>
+  <div class="card js">
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span></span></div>
+    </div>
+    <div class="text">Detecting system</div>
+  </div>
+
+  <div class="card node">
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span></span></div>
+    </div>
+    <div class="text">Validating system</div>
+  </div>
+
+  <div class="card react">
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span></span></div>
+    </div>
+    <div class="text">Preparing suggestions</div>
+  </div>
+</div>
+<button onclick="window.location.href='sugg.html';">
+  finish </button>
+</div>
+<script>
+  let options = {
+    startAngle: -1.55,
+    size: 150,
+    value: 1,
+    fill: {
+      gradient: ['#a445b2', '#fa4299']
+    }
+  }
+  $(".circle .bar").circleProgress(options).on('circle-animation-progress',
+    function(event, progress, stepValue) {
+      $(this).parent().find("span").text(String(stepValue.toFixed(0).substr(2)) );
+    });
+  $(".js .bar").circleProgress({
+    value: 1
+  });
+  $(".node .bar").circleProgress({
+    value: 1
+  });
+  $(".react .bar").circleProgress({
+    value:1
+  });
+</script>
+
+</body>
+
+</html>

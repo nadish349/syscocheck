@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PC Compatibility Checker</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-image: url('rectangle@2x.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .component-selection {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 20px auto;
+      width: 50%;
+      background-color: rgba(255, 255, 255, 0.8); /* Adjust the opacity as needed */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 252, 252, 0.925);
+    }
+
+    .component-selection h2 {
+      margin-bottom: 5px;
+    }
+
+    select, button {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    button {
+      margin-top: 10px;
+      background-color: #2bc1be;
+      color: white;
+      cursor: pointer;
+    }
+
+    #compatibility-result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>PC Compatibility Checker</h1>
+  <div class="component-selection">
+    <h2>Processor</h2>
+    <select id="processor">
+      <option value="">Select Processor</option>
+      <option value="amd-ryzen-5-5600x">AMD Ryzen 5 5600X (AM4)</option>
+      <option value="intel-core-i7-12700k">Intel Core i7 12700K (LGA 1700)</option>
+      <option value="amd_ryzen7_5800x">AMD Ryzen 7 5800X (AM4)</option>
+      <option value="intel_corei5_11400">Intel Core i5 11400 (LGA 1200)</option>
+      <option value="amd_athlon_3000g">AMD Athlon 3000G (AM4)</option>
+      <option value="intel_celeron_g5900">Intel Celeron G5900 (LGA 1200)</option>
+      <option value="amd_ryzen9_5950x">AMD Ryzen 9 5950X (AM4)</option>
+      <option value="intel_corei9_12900k">Intel Core i9 12900K (LGA 1700)</option>
+      <option value="amd_threadripper_3990x">AMD Threadripper 3990X (sTRX4)</option>
+    </select>
+    <h2>Graphics Card</h2>
+    <select id="graphics-card">
+      <option value="">Select Graphics Card</option>
+      <option value="nvidia-rtx-3080">NVIDIA RTX 3080</option>
+      <option value="amd-radeon-rx-6800xt">AMD Radeon RX 6800 XT</option>
+      <option value="nvidia_rtx3060ti">NVIDIA GeForce RTX 3060 Ti</option>
+      <option value="amd_radeon_rx6700xt">AMD Radeon RX 6700 XT</option>
+    </select>
+    <h2>Motherboard</h2>
+    <select id="motherboard">
+      <option value="">Select Motherboard</option>
+      <option value="msi-b550m-mortar-wifi">MSI B550M Mortar Wifi (AM4)</option>
+      <option value="asus-rog-strix-z690-a-gaming-wifi">ASUS ROG Strix Z690-A Gaming Wifi (LGA 1700)</option>
+      <option value="gigabyte_b460m_ds3h">Gigabyte B460M DS3H (LGA 1200)</option>
+      <option value="asrock_b550m_pro4">ASRock B550M Pro4 (AM4)</option>
+      <option value="msi_mpg_z490_gaming_edge_wifi">MSI MPG Z490 Gaming Edge Wifi (LGA 1200)</option>
+      <option value="asus_tuf_gaming_b550-plus_wi-fi">ASUS TUF Gaming B550-Plus (Wi-Fi) (AM4)</option>
+      <option value="gigabyte_x570_aorus_master">Gigabyte X570 Aorus Master (AM4)</option>
+      <option value="asrock_z690_extreme4">ASRock Z690 Extreme4 (LGA 1700)</option>
+      <option value="msi_meg_z390_ace">MSI MEG Z390 ACE (LGA 1151)</option>
+    </select>
+    <h2>RAM</h2>
+    <select id="ram-size">
+      <option value="">Select RAM Size</option>
+      <option value="8gb">8GB</option>
+      <option value="16gb">16GB</option>
+      <option value="32gb">32GB</option>
+      <option value="64gb">64GB</option>
+    </select>
+  </div>
+  <button onclick="verifyCompatibility()">Verify</button>
+  <div id="compatibility-result"></div>
+  <script>
+    function verifyCompatibility() {
+      const processor = document.getElementById('processor').value;
+      const graphicsCard = document.getElementById('graphics-card').value;
+      const motherboard = document.getElementById('motherboard').value;
+      const ramSize = document.getElementById('ram-size').value;
+
+      // Processor and motherboard socket type mapping
+      const socketTypes = {
+        'amd-ryzen-5-5600x': 'AM4',
+        'intel-core-i7-12700k': 'LGA 1700',
+        'amd_ryzen7_5800x': 'AM4',
+        'intel_corei5_11400': 'LGA 1200',
+        'amd_athlon_3000g': 'AM4',
+        'intel_celeron_g5900': 'LGA 1200',
+        'amd_ryzen9_5950x': 'AM4',
+        'intel_corei9_12900k': 'LGA 1700',
+        'amd_threadripper_3990x': 'sTRX4',
+        'msi-b550m-mortar-wifi': 'AM4',
+        'asus-rog-strix-z690-a-gaming-wifi': 'LGA 1700',
+        'gigabyte_b460m_ds3h': 'LGA 1200',
+        'asrock_b550m_pro4': 'AM4',
+        'msi_mpg_z490_gaming_edge_wifi': 'LGA 1200',
+        'asus_tuf_gaming_b550-plus_wi-fi': 'AM4',
+        'gigabyte_x570_aorus_master': 'AM4',
+        'asrock_z690_extreme4': 'LGA 1700',
+        'msi_meg_z390_ace': 'LGA 1151'
+      };
+
+      let compatible = true;
+      const compatibilityResult = document.getElementById('compatibility-result');
+
+      if (!processor || !graphicsCard || !motherboard || !ramSize) {
+        compatible = false;
+        compatibilityResult.textContent = 'Please select all components.';
+      } else {
+        // Check if the socket type of the selected processor matches the socket type of the selected motherboard
+        if (socketTypes[processor] !== socketTypes[motherboard]) {
+          compatible = false;
+        }
+      }
+
+      compatibilityResult.textContent = compatible ? 'YOUR COMPONENTS ARE COMPATIBLE!' : 'NOT COMPATIBLE.';
+      
+      // Redirect to the appropriate page based on compatibility
+      window.location.href = compatible ? 'process.html' : 'not_compatible.html';
+    }
+  </script>
+</body>
+</html>

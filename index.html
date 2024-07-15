@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./two.css" />
+    <link rel="stylesheet" href="./two1.css" />
+
+    <style>
+        body {
+            background-image: url('your-background-image.jpg'); /* Replace with your background image URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+        }
+        /* Add any additional styles here if needed */
+    </style>
+</head>
+<body>
+
+    <div class="desktop-1">
+        <img
+            class="pexels-francesco-ungaro-96381-icon"
+            alt=""
+            src="rectangle3.png"
+        />
+
+        <section class="syscocheck-parent">
+            <h1 class="syscocheck">SYSCOCHECK</h1>
+            <div class="hero-content">
+                <header class="navigation">
+                    <div class="navigation-child"></div>
+                    <div class="navigation-item"></div>
+                    <h1 class="find-out-now-container">
+                        <p class="find-out-now">
+                            “ Find out now if your computer can support your favourite application, games, and other software ’’
+                        </p>
+                    </h1>
+                </header>
+            </div>
+        </section>
+        <div class="account-area">
+            <div class="navigation-items">
+                <div class="navigation-items-inner">
+                    <div class="cta-button-parent">
+                        <div class="cta-button"></div>
+                        <div class="check-it-and">CHECK IT AND CHECK OUT</div>
+                    </div>
+                </div>
+                <button class="cta-box">
+                    <div class="cta-box-child"></div>
+                    <h1 class="login" id="loginText">Login</h1>
+                </button>
+            </div>
+        </div>
+        <section class="promo-icon-parent">
+            <img class="promo-icon" alt="" src="./public/promo-icon@2x.png" />
+            <header class="banner-parent">
+                <div class="banner"></div>
+                <div class="promo-box">
+                    <div class="olivia-martinez"></div>
+                    <div class="about-us" id="aboutUsButton">About Us</div>
+                </div>
+            </header>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var loginText = document.getElementById("loginText");
+            if (loginText) {
+                loginText.addEventListener("click", function () {
+                    window.location.href = "./login.html";
+                });
+            }
+
+            var aboutUsButton = document.getElementById("aboutUsButton");
+            if (aboutUsButton) {
+                aboutUsButton.addEventListener("click", function () {
+                    window.location.href = "./aboutus.html";
+                });
+            }
+        });
+    </script>
+</body>
+</html>
